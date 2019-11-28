@@ -6,7 +6,6 @@ This is a glorious blog
 To actually run this project you need...
 
 
---------------------------------------------
 BACKEND
 -------------------------------------------------------------------------
 .env
