@@ -9,6 +9,7 @@ To actually run this project you need...
 
 BACKEND
 .env
+
 APP_NAME=nodeapi
 MONGO_URI=xxxx
 PORT=8000
