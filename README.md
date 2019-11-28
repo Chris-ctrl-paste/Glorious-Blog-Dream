@@ -11,8 +11,11 @@ BACKEND
 .env
 
 APP_NAME=nodeapi
+
 MONGO_URI=xxxx
+
 PORT=8000
+
 JWT_SECRET=xxxxxxxxxxxxxxx
 CLIENT_URL=http://localhost:3000
 REACT_APP_GOOGLE_CLIENT_ID=xxxxxxx.apps.googleusercontent.com
