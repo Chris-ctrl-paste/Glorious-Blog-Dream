@@ -10,8 +10,8 @@
     "dev": "concurrently \"npm run server\" \"npm run client \""
   },
   "keywords": [
-    "node",
-    "api"
+    
+    
   ],
   "author": "Christian Österback",
   "license": "ISC",
