@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+const path = require('path')
 const expressValidator = require('express-validator');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -11,7 +12,7 @@ dotenv.config();
 
 
 mongoose
-    .connect(process.env.MONGO_URI, {
+    .connect(`${process.env.MONGO_URI}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true 
     })
@@ -41,6 +42,9 @@ app.use(function(err, req, res, next) {
         res.status(401).json({ error: 'Unauthorized!' });
     }
 });
+
+app.use(express.static(path.join(__dirname, "client/build")));
+
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {

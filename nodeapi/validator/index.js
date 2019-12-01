@@ -3,13 +3,13 @@ exports.createPostValidator = (req, res, next) => {
     req.check('title', 'Write a title').notEmpty();
     req.check('title', 'Title Must Be Between 4 To 100 Characters').isLength({
         min: 4,
-        max: 150
+        max: 100
     });
     // body
     req.check('body', 'Write a body').notEmpty();
     req.check('body', 'Body Must Be Between 4 To 1500 Characters').isLength({
         min: 4,
-        max: 2000
+        max: 1500
     });
     // check for errors
     const errors = req.validationErrors();
@@ -31,7 +31,7 @@ exports.userSignupValidator = (req, res, next) => {
         .withMessage('Email must contain @')
         .isLength({
             min: 4,
-            max: 2000
+            max: 1500
         });
     //Password Check
     req.check('password', 'Password is required').notEmpty();

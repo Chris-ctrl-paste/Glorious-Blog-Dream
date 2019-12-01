@@ -32,7 +32,7 @@ class Admin extends Component {
                            
                             <Posts />
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-6 mb-5">
                             
                            
                             <Users />

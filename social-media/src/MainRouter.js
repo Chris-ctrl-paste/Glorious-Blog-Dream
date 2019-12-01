@@ -19,6 +19,7 @@ import Admin from "./admin/Admin";
 
 const MainRouter = () => (
     <div style={{backgroundColor: 'rgb(21, 32, 43)'}}>
+    
         <Menu />
         
         <Switch>
@@ -47,8 +48,11 @@ const MainRouter = () => (
             />
             <PrivateRoute exact path="/findpeople" component={FindPeople} />
             <PrivateRoute exact path="/user/:userId" component={Profile} />
+            
         </Switch>
+       
         <Footer />
+       
         </div>
     
 );

@@ -108,7 +108,7 @@ class Comment extends Component {
                     {error}
                 </div>
 
-                <div className="col-md-12">
+                <div className="col-md-12 " style={{marginBottom:'65px'}} >
                     <h3 className="text-success">{comments.length} Comments</h3>
                     <hr />
                     {comments.map((comment, i) => (
@@ -156,7 +156,8 @@ class Comment extends Component {
                                                                     comment
                                                                 )
                                                             }
-                                                            className="text-danger float-right mr-1"
+                                                            className="text-danger float-right mr-1 "
+                                                            style={{'cursor':'pointer'}}
                                                         >
                                                             Remove
                                                         </span>
