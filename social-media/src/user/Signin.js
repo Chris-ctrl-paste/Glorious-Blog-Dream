@@ -165,7 +165,7 @@ class Signin extends Component {
                 )}
 
                 {this.signinForm(email, password, recaptcha)}
-{/* 
+
                 <p>
                     <Link
                         to="/forgot-password"
@@ -174,7 +174,7 @@ class Signin extends Component {
                         {" "}
                         Forgot Password
                     </Link>
-                </p> */}
+                </p> 
             </div>
         );
     }
