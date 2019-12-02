@@ -1,9 +1,8 @@
 # Glorious-Blog-Dream
 This is a glorious blog
+Where you can follow or unfollow people and comment/like/unlike their posts, there is google signin and normal account creation/sign in, you have your own profile page where you can write about yourselfs and much more!
 
 
-
-To actually run this project you need...
 
 
 BACKEND
