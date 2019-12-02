@@ -18,7 +18,7 @@ PORT=8000
 
 JWT_SECRET=xxxxxxxxxxxxxxx
 
-CLIENT_URL=http://localhost:3000/# <------------ I have to add "#" otherwise password reset wont work on AWS elastic beanstalk
+CLIENT_URL=http://localhost:3000/# <------------ i had to add "#" otherwise password reset wont work on AWS elastic beanstalk
 
 REACT_APP_GOOGLE_CLIENT_ID=xxxxxxx.apps.googleusercontent.com
 
