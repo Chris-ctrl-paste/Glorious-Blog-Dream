@@ -139,9 +139,7 @@ class Profile extends Component {
                   <div className="card mt-5">
                     <div className="card-body" style={{backgroundColor: 'rgb(21, 32, 43)'}}>
                       <h5 style={{color: 'white'}} className="card-title">Admin</h5>
-                      <p className="mb-2 text-danger">
-                        Edit/Delete as an Admin
-                      </p>
+                     
                       <Link
                         className="btn btn-raised btn-success mr-5"
                         to={`/user/edit/${user._id}`}

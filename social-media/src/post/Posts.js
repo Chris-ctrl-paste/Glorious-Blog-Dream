@@ -8,7 +8,8 @@ class Posts extends Component {
         super();
         this.state = {
             posts: [],
-            page: 1
+            page: 1,
+            
         };
     }
 
@@ -36,6 +37,8 @@ class Posts extends Component {
         this.loadPosts(this.state.page - number);
     };
 
+
+
     renderPosts = posts => {
         return (
             <div className="row">
@@ -47,52 +50,65 @@ class Posts extends Component {
                         ? post.postedBy.name
                         : " Unknown";
 
+
                     return (
-                        <div className="card col-md-6" key={i} style={{backgroundColor: 'rgb(21, 32, 43)'}}>
-                            <div className="card-body">
-                                <img
-                                    src={`${
-                                        process.env.REACT_APP_API_URL
-                                    }/post/photo/${post._id}`}
-                                    alt={post.title}
-                                    onError={i =>
-                                        (i.target.src = `${DefaultPost}`)
-                                    }
-                                    className="img-thunbnail mb-3"
-                                    style={{ height: "200px", width: "100%" }}
-                                />
-                                <h5 className="card-title" style={{color: 'white'}}>{post.title}</h5>
-                                <p className="card-text" style={{color: 'white'}}>
-                                    {post.body.substring(0, 100)}
-                                </p>
-                                <br />
-                                <p className="font-italic mark" style={{backgroundColor: 'rgb(21, 32, 43)', color:'red'}}>
-                                    Posted by{" "}
-                                    <Link to={`${posterId}`} style={{color:'white'}}>
-                                        {posterName}{" "}
+
+                        
+                        <div className="card col-md-6" key={i} style={{ backgroundColor: 'rgb(21, 32, 43)', 
+                        borderStyle: 'solid', border:'white'  }}>
+                           
+                   
+                            <div className="card-body " to={`/post/${post._id}`} >
+                            <Link to={`/post/${post._id}`}>
+                                    <img
+                                        src={`${
+                                            process.env.REACT_APP_API_URL
+                                            }/post/photo/${post._id}`}
+                                        alt={post.title}
+                                        onError={i =>
+                                            (i.target.src = `${DefaultPost}`)
+                                        }
+                                        className="img-thunbnail mb-3"
+                                        style={{ height: "200px", width: "100%" }}
+                                    />
+                                    <h5 className="card-title text-white" >{post.title}</h5>
+                                    <p className="card-text text-white" >
+                                        {post.body.substring(0, 100)}
+                                    </p>
+                                    <br />
                                     </Link>
-                                    on {new Date(post.created).toDateString()}
-                                </p>
-                                <Link
-                                    to={`/post/${post._id}`}
-                                    className="btn btn-raised btn-success btn-sm"
-                                >
-                                    Read more
-                                </Link>
+                               
+                                    <p className="font-italic mark " style={{ backgroundColor: 'rgb(21, 32, 43)', color: 'white' }}>
+                                        {" "}
+                                        <Link to={`${posterId}`} style={{ color: 'red' }}>
+                                            {posterName}{" "}
+                                        </Link>
+                                        on {new Date(post.created).toDateString()}
+                                    </p>
+                                   
+                              
+                                 
                             </div>
+                            
+                            
                         </div>
+                        
                     );
                 })}
+                
             </div>
+         
+               
+               
         );
     };
 
     render() {
         const { posts, page } = this.state;
         return (
-            <div className="container" style={{backgroundcolor:'rgb(21, 32, 43)'}}>
+            <div className="container" style={{ backgroundcolor: 'rgb(21, 32, 43)' }}>
                 <h2 className="mt-5 mb-5 ">
-                    
+
                 </h2>
 
                 {this.renderPosts(posts)}
@@ -105,8 +121,8 @@ class Posts extends Component {
                         Previous ({this.state.page - 1})
                     </button>
                 ) : (
-                    ""
-                )}
+                        ""
+                    )}
 
                 {posts.length ? (
                     <button
@@ -116,11 +132,12 @@ class Posts extends Component {
                         Next ({page + 1})
                     </button>
                 ) : (
-                    ""
-                )}
+                        ""
+                    )}
             </div>
         );
     }
 }
+
 
 export default Posts;

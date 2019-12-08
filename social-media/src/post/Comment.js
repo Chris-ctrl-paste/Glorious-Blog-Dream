@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {  Component } from "react";
 import { comment, uncomment } from "./apiPost";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
@@ -46,7 +46,7 @@ class Comment extends Component {
                         console.log(data.error);
                     } else {
                         this.setState({ text: "" });
-                        
+
                         this.props.updateComments(data.comments);
                     }
                 }
@@ -83,38 +83,48 @@ class Comment extends Component {
 
         return (
             <div>
-                <h2 style={{color:'white'}} className="mt-5 mb-5">Leave a comment</h2>
 
-                <form onSubmit={this.addComment}>
-                    <div className="form-group">
-                        <input
-                            style={{color:'white'}}
-                            type="text"
-                            onChange={this.handleChange}
-                            value={this.state.text}
-                            className="form-control"
-                            placeholder="Leave a comment..."
-                        />
-                        <button className="btn btn-raised btn-success mt-2">
-                            Post
+
+
+
+
+                <div className="mt-5"></div>
+                {isAuthenticated() && (
+
+                    <form onSubmit={this.addComment}>
+                        <div className="form-group">
+                            <input
+                                style={{ color: 'white' }}
+                                type="text"
+                                onChange={this.handleChange}
+                                value={this.state.text}
+                                className="form-control"
+                                placeholder="Leave a comment..."
+                            />
+                            <button className="btn btn-raised btn-success mt-2">
+                                Post
                         </button>
-                    </div>
-                </form>
+                        </div>
 
-                <div
+                    </form>
+
+                )})
+
+
+                        <div
                     className="alert alert-danger"
                     style={{ display: error ? "" : "none" }}
                 >
                     {error}
                 </div>
 
-                <div className="col-md-12 " style={{marginBottom:'65px'}} >
+                <div className="col-md-12 " style={{ marginBottom: '65px' }} >
                     <h3 className="text-success">{comments.length} Comments</h3>
                     <hr />
                     {comments.map((comment, i) => (
                         <div key={i}>
                             <div>
-                                <Link  to={`/user/${comment.postedBy._id}`}>
+                                <Link to={`/user/${comment.postedBy._id}`}>
                                     <img
                                         style={{
                                             borderRadius: "50%",
@@ -128,15 +138,15 @@ class Comment extends Component {
                                         }
                                         src={`${
                                             process.env.REACT_APP_API_URL
-                                        }/user/photo/${comment.postedBy._id}`}
+                                            }/user/photo/${comment.postedBy._id}`}
                                         alt={comment.postedBy.name}
                                     />
                                 </Link>
                                 <div>
-                                    <p style={{color: 'white'}} className="lead">{comment.text}</p>
-                                    <p className="font-italic mark" style={{backgroundColor: 'rgb(21, 32, 43)', color: 'white'}}>
-                                        Posted by{" "}
-                                        <Link style={{color: 'red'}}
+                                    <p style={{ color: 'white' }} className="lead">{comment.text}</p>
+                                    <p className="font-italic mark" style={{ backgroundColor: 'rgb(21, 32, 43)', color: 'white' }}>
+                                        {" "}
+                                        <Link style={{ color: 'red' }}
                                             to={`/user/${comment.postedBy._id}`}
                                         >
                                             {comment.postedBy.name}{" "}
@@ -148,7 +158,7 @@ class Comment extends Component {
                                         <span>
                                             {isAuthenticated().user &&
                                                 isAuthenticated().user._id ===
-                                                    comment.postedBy._id && (
+                                                comment.postedBy._id && (
                                                     <>
                                                         <span
                                                             onClick={() =>
@@ -157,7 +167,7 @@ class Comment extends Component {
                                                                 )
                                                             }
                                                             className="text-danger float-right mr-1 "
-                                                            style={{'cursor':'pointer'}}
+                                                            style={{ 'cursor': 'pointer' }}
                                                         >
                                                             Remove
                                                         </span>
@@ -170,6 +180,7 @@ class Comment extends Component {
                         </div>
                     ))}
                 </div>
+
             </div>
         );
     }

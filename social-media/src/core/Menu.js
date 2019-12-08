@@ -9,7 +9,7 @@ const isActive = (history, path) => {
 
 const Menu = ({ history }) => (
     <div >
-        <ul  className="nav nav-tabs   " style={{backgroundColor: 'rgb(21, 32, 43)'}}>
+        <ul className="nav nav-tabs   " style={{ backgroundColor: 'rgb(21, 32, 43)' }}>
             {isAuthenticated() && (
                 <>
                     <li className="nav-item">
@@ -24,7 +24,7 @@ const Menu = ({ history }) => (
 
                     <li className="nav-item">
                         <Link to={`/findpeople`} style={isActive(history, `/findpeople`)} className="nav-link">
-                            People
+                            Search
                         </Link>
                     </li>
 
@@ -43,6 +43,7 @@ const Menu = ({ history }) => (
                     Posts
                 </Link>
             </li>
+
 
             {!isAuthenticated() && (
                 < >
@@ -67,6 +68,9 @@ const Menu = ({ history }) => (
                 </li>
 
             )}
+          
+
+
             {isAuthenticated() && (
                 <>
                     <li className="nav-item ml-auto">

@@ -11,46 +11,13 @@ class Signup extends Component {
             email: "",
             password: "",
             error: "",
-            open: false,
-            recaptcha: false
+            open: false
+
         };
     }
-
     handleChange = name => event => {
         this.setState({ error: "" });
         this.setState({ [name]: event.target.value });
-    };
-
-    recaptchaHandler = e => {
-        this.setState({ error: "" });
-        let userDay = e.target.value.toLowerCase();
-        let dayCount;
-
-        if (userDay === "sunday") {
-            dayCount = 0;
-        } else if (userDay === "monday") {
-            dayCount = 1;
-        } else if (userDay === "tuesday") {
-            dayCount = 2;
-        } else if (userDay === "wednesday") {
-            dayCount = 3;
-        } else if (userDay === "thursday") {
-            dayCount = 4;
-        } else if (userDay === "friday") {
-            dayCount = 5;
-        } else if (userDay === "saturday") {
-            dayCount = 6;
-        }
-
-        if (dayCount === new Date().getDay()) {
-            this.setState({ recaptcha: true });
-            return true;
-        } else {
-            this.setState({
-                recaptcha: false
-            });
-            return false;
-        }
     };
 
     clickSubmit = event => {
@@ -61,32 +28,26 @@ class Signup extends Component {
             email,
             password
         };
-       
-        if (this.state.recaptcha) {
-            signup(user).then(data => {
-                if (data.error) this.setState({ error: data.error });
-                else
-                    this.setState({
-                        error: "",
-                        name: "",
-                        email: "",
-                        password: "",
-                        open: true
-                    });
-            });
-        } else {
-            this.setState({
-                error: "What day is today? Please Write The Correct Day"
-            });
-        }
+
+        signup(user).then(data => {
+            if (data.error) this.setState({ error: data.error });
+            else
+                this.setState({
+                    error: "",
+                    name: "",
+                    email: "",
+                    password: "",
+                    open: true
+                });
+        });
     };
 
-    signupForm = (name, email, password, recaptcha) => (
+    signupForm = (name, email, password) => (
         <form>
             <div className="form-group">
                 <label className="text-white">Name</label>
                 <input
-                    style={{color:'white'}}
+                    style={{ color: 'white' }}
                     onChange={this.handleChange("name")}
                     type="text"
                     className="form-control"
@@ -96,7 +57,7 @@ class Signup extends Component {
             <div className="form-group">
                 <label className="text-white">Email</label>
                 <input
-                    style={{color:'white'}}
+                    style={{ color: 'white' }}
                     onChange={this.handleChange("email")}
                     type="email"
                     className="form-control"
@@ -106,7 +67,7 @@ class Signup extends Component {
             <div className="form-group">
                 <label className="text-white">Password</label>
                 <input
-                    style={{color:'white'}}
+                    style={{ color: 'white' }}
                     onChange={this.handleChange("password")}
                     type="password"
                     className="form-control"
@@ -114,18 +75,7 @@ class Signup extends Component {
                 />
             </div>
 
-            <div className="form-group">
-                <label className="text-white">
-                    {recaptcha ? "Thanks. You got it!" : "What day is today?"}
-                </label>
 
-                <input 
-                    style={{color:'white'}}
-                    onChange={this.recaptchaHandler}
-                    type="text"
-                    className="form-control"
-                />
-            </div>
 
             <button
                 onClick={this.clickSubmit}
@@ -137,7 +87,7 @@ class Signup extends Component {
     );
 
     render() {
-        const { name, email, password, error, open, recaptcha } = this.state;
+        const { name, email, password, error, open } = this.state;
         return (
             <div className="container">
                 <h2 className="mt-5 mb-5 text-white">Sign up</h2>
@@ -163,7 +113,7 @@ class Signup extends Component {
                     <Link to="/signin">Sign In</Link>.
                 </div>
 
-                {this.signupForm(name, email, password, recaptcha)}
+                {this.signupForm(name, email, password)}
             </div>
         );
     }

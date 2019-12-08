@@ -89,9 +89,9 @@ class SinglePost extends Component {
         const { like, likes } = this.state;
 
         return (
-            
-            <div  className="card-body" style={{padding:'0'}}>
-                
+
+            <div className="card-body" style={{ padding: '0' }}>
+
                 <img
                     src={`${process.env.REACT_APP_API_URL}/post/photo/${post._id}`}
                     alt={post.title}
@@ -101,32 +101,32 @@ class SinglePost extends Component {
                         height: '400px',
                         width: '100%',
                         objectFit: 'cover',
-                        
+
                     }}
                 />
 
                 {like ? (
-                    <h3 style={{color:'green'}} onClick={this.likeToggle}>
+                    <h3 style={{ color: 'green' }} onClick={this.likeToggle}>
                         <i
                             className="fa fa-thumbs-up text-success bg-green"
-                            style={{ padding: '10px', borderRadius: '50%' }}
+                            style={{ borderRadius: '50%' }}
                         />{' '}
                         {likes} Like
                     </h3>
                 ) : (
-                    <h3 style={{color:'red'}} onClick={this.likeToggle}>
-                        <i
-                            className="fa fa-thumbs-up text-warning bg-rgb(21, 32, 43)"
-                            style={{ padding: '10px', borderRadius: '50%' }}
-                        />{' '}
-                        {likes} Like
+                        <h3 style={{ color: 'red' }} onClick={this.likeToggle}>
+                            <i
+                                className="fa fa-thumbs-up text-warning bg-rgb(21, 32, 43)"
+                                style={{ borderRadius: '50%' }}
+                            />{' '}
+                            {likes} Like
                     </h3>
-                )}
+                    )}
 
-                <p style={{color:'white'}} className="card-text">{post.body}  </p>
+                <p style={{ color: 'white' }} className="card-text">{post.body}  </p>
                 <br />
-                <p className="font-italic mark" style={{backgroundColor: 'rgb(21, 32, 43)', color:'red'}}>
-                    Posted by <Link style={{color: 'red'}} to={`${posterId}`}>{posterName} </Link>
+                <p className="font-italic mark" style={{ backgroundColor: 'rgb(21, 32, 43)', color: 'red' }}>
+                    <Link style={{ color: 'red' }} to={`${posterId}`}>{posterName} </Link>
                     on {new Date(post.created).toDateString()}
                 </p>
                 <div className="d-inline-block">
@@ -145,7 +145,7 @@ class SinglePost extends Component {
                         </>
                     )}
 
-                   
+
                 </div>
             </div>
         );
@@ -162,34 +162,35 @@ class SinglePost extends Component {
 
         return (
             <div className="container">
-                 <div>
-                        {isAuthenticated().user && isAuthenticated().user.role === 'admin' && (
-                            <div >
-                                <div className="row" style={{padding: '0'}}>
-                                    <h5 style={{color: 'white'}} className="card-title ml-auto">Admin</h5>
-                                    <p className=" text-danger mr-2 ml-2">Edit/Delete as an Admin</p>
-                                    <Link
-                                        to={`/post/edit/${post._id}`}
-                                        className="btn btn-raised btn-warning btn-sm mr-2"
-                                    >
-                                        Update Post
+                <div>
+                    {isAuthenticated().user && isAuthenticated().user.role === 'admin' && (
+                        <div >
+                            <div className="row" style={{ padding: '0' }}>
+                                <h5 style={{ color: 'white' }} className="card-title ml-auto">Admin</h5>
+                               
+                                <Link
+                                   
+                                    to={`/post/edit/${post._id}`}
+                                    className="btn btn-raised btn-warning btn-sm mr-2 ml-2"
+                                >
+                                    Update Post
                                     </Link>
-                                    <button onClick={this.deleteConfirmed} className="btn btn-raised btn-danger">
-                                        Delete Post
+                                <button onClick={this.deleteConfirmed} className="btn btn-raised btn-danger">
+                                    Delete Post
                                     </button>
-                                </div>
                             </div>
-                        )}
-                    </div>
-                <h2 style={{color: 'white'}} className="display-2  mb-5">{post.title}</h2>
+                        </div>
+                    )}
+                </div>
+                <h2 style={{ color: 'white' }} className="display-2  mb-5">{post.title}</h2>
 
                 {!post ? (
                     <div className="jumbotron text-center">
                         <h2>Loading...</h2>
                     </div>
                 ) : (
-                    this.renderPost(post)
-                )}
+                        this.renderPost(post)
+                    )}
 
                 <Comment postId={post._id} comments={comments.reverse()} updateComments={this.updateComments} />
             </div>
