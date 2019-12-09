@@ -83,91 +83,91 @@ class Profile extends Component {
 
     const photoUrl = user._id
       ? `${process.env.REACT_APP_API_URL}/user/photo/${
-          user._id
-        }?${new Date().getTime()}`
+      user._id
+      }?${new Date().getTime()}`
       : DefaultProfile;
 
     return (
       <div className="container">
         <div className="mt-5">
-        <div className="row">
-          <div className="col-md-4">
-            <img
-              style={{ height: "200px", width: "auto", padding: '0' }}
-              className="img-thumbnail"
-              src={photoUrl}
-              onError={i => (i.target.src = `${DefaultProfile}`)}
-              alt={user.name}
-            />
-          </div>
-
-          <div className="col-md-8">
-            <div className="lead mt-2">
-              <p style={{color: 'white'}}> {user.name}</p>
-              <p style={{color: 'white'}}> {user.email}</p>
-              <p style={{color:'red'}}>{`Joined ${new Date(user.created).toDateString()}`}</p>
-            </div>
-
-            {isAuthenticated().user &&
-            isAuthenticated().user._id === user._id ? (
-              <div className="d-inline-block">
-                <Link
-                  className="btn btn-raised btn-info mr-5"
-                  to={`/post/create`}
-                >
-                  Create Post
-                </Link>
-
-                <Link
-                  className="btn btn-raised btn-success mr-5"
-                  to={`/user/edit/${user._id}`}
-                >
-                  Edit Profile
-                </Link>
-                <DeleteUser userId={user._id} />
-              </div>
-            ) : (
-              <FollowProfileButton
-                following={this.state.following}
-                onButtonClick={this.clickFollowButton}
+          <div className="row">
+            <div className="col-md-4">
+              <img
+                style={{ height: "200px", width: "auto", padding: '0' }}
+                className="img-thumbnail"
+                src={photoUrl}
+                onError={i => (i.target.src = `${DefaultProfile}`)}
+                alt={user.name}
               />
-            )}
+            </div>
 
-            <div>
+            <div className="col-md-8">
+              <div className="lead mt-2">
+                <p style={{ color: 'white' }}> {user.name}</p>
+                <p style={{ color: 'white' }}> {user.email}</p>
+                <p style={{ color: 'red' }}>{`Joined ${new Date(user.created).toDateString()}`}</p>
+              </div>
+
               {isAuthenticated().user &&
-                isAuthenticated().user.role === "admin" && (
-                  <div className="card mt-5">
-                    <div className="card-body" style={{backgroundColor: 'rgb(21, 32, 43)'}}>
-                      <h5 style={{color: 'white'}} className="card-title">Admin</h5>
-                     
-                      <Link
-                        className="btn btn-raised btn-success mr-5"
-                        to={`/user/edit/${user._id}`}
-                      >
-                        Edit Profile
-                      </Link>
-                     
-                      <DeleteUser />
-                    </div>
+                isAuthenticated().user._id === user._id ? (
+                  <div className="d-inline-block">
+                    <Link
+                      className="btn btn-raised btn-info mr-5"
+                      to={`/post/create`}
+                    >
+                      Create Post
+                </Link>
+
+                    <Link
+                      className="btn btn-raised btn-success mr-5"
+                      to={`/user/edit/${user._id}`}
+                    >
+                      Edit Profile
+                </Link>
+                    <DeleteUser userId={user._id} />
                   </div>
+                ) : (
+                  <FollowProfileButton
+                    following={this.state.following}
+                    onButtonClick={this.clickFollowButton}
+                  />
                 )}
+
+              <div>
+                {isAuthenticated().user &&
+                  isAuthenticated().user.role === "admin" && (
+                    <div className="card mt-5">
+                      <div className="card-body" style={{ backgroundColor: 'rgb(21, 32, 43)' }}>
+                        <h5 style={{ color: 'white' }} className="card-title">Admin</h5>
+
+                        <Link
+                          className="btn btn-raised btn-success mr-5"
+                          to={`/user/edit/${user._id}`}
+                        >
+                          Edit Profile
+                      </Link>
+
+                        {/* <DeleteUser /> */}
+                      </div>
+                    </div>
+                  )}
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col md-12 mt-5 mb-5">
+              <hr />
+              <p className="lead" style={{ color: 'white' }}>{user.about}</p>
+              <hr />
+
+              <ProfileTabs
+                followers={user.followers}
+                following={user.following}
+                posts={posts}
+              />
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col md-12 mt-5 mb-5"> 
-            <hr />
-            <p className="lead" style={{color:'white'}}>{user.about}</p>
-            <hr />
-
-            <ProfileTabs
-              followers={user.followers}
-              following={user.following}
-              posts={posts}
-            />
-          </div>
-        </div>
-      </div>
       </div>
     );
   }
