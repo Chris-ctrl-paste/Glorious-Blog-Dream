@@ -9,7 +9,7 @@ exports.sendEmail = emailData => {
     secure: false,
     requireTLS: true,
     auth: {
-      user: "christian.osterback@gmail.com",
+      user: "EMAIL HERE",
       pass: "aqeetjnjwgeppiro"
     }
   });
